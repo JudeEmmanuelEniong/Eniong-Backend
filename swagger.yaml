@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Eniong Final Project API
+  description: Node.js + MySQL - Auth API by Eniong - UC CCS Final Examination
+  version: 1.0.0
+servers:
+  - url: https://eniong-backend.onrender.com
+    description: Production server
+paths:
+  /accounts/register:
+    post:
+      summary: Register a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                firstName: { type: string }
+                lastName: { type: string }
+                email: { type: string }
+                password: { type: string }
+                confirmPassword: { type: string }
+                acceptTerms: { type: boolean }
+      responses:
+        '200':
+          description: Registration successful
+  /accounts/verify-email:
+    post:
+      summary: Verify email address
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token: { type: string }
+      responses:
+        '200':
+          description: Verification successful
+  /accounts/authenticate:
+    post:
+      summary: Login with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: Authentication successful
+  /accounts/refresh-token:
+    post:
+      summary: Refresh JWT token
+      responses:
+        '200':
+          description: Token refreshed
+  /accounts/revoke-token:
+    post:
+      summary: Revoke refresh token (logout)
+      responses:
+        '200':
+          description: Token revoked
+  /accounts/forgot-password:
+    post:
+      summary: Submit email to reset password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+      responses:
+        '200':
+          description: Reset email sent
+  /accounts/reset-password:
+    post:
+      summary: Reset password using token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token: { type: string }
+                password: { type: string }
+                confirmPassword: { type: string }
+      responses:
+        '200':
+          description: Password reset successful
+  /accounts:
+    get:
+      summary: Get all accounts (Admin only)
+      responses:
+        '200':
+          description: List of accounts
+  /accounts/{id}:
+    get:
+      summary: Get account by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Account details
+    put:
+      summary: Update account
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                firstName: { type: string }
+                lastName: { type: string }
+                email: { type: string }
+                password: { type: string }
+                confirmPassword: { type: string }
+                role: { type: string }
+      responses:
+        '200':
+          description: Update successful
+    delete:
+      summary: Delete account
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Account deleted
