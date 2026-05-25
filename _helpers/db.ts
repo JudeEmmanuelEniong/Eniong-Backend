@@ -1,4 +1,3 @@
-import mysql from 'mysql2/promise';
 import { Sequelize } from 'sequelize';
 import accountModel from '../accounts/account.model';
 import refreshTokenModel from '../accounts/refresh-token.model';
@@ -17,10 +16,6 @@ export async function initializeDb() {
     const user = process.env.DB_USER!;
     const password = process.env.DB_PASSWORD!;
     const database = process.env.DB_NAME!;
-
-    const connection = await mysql.createConnection({ host, port, user, password });
-    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
-    await connection.end();
 
     const sequelize = new Sequelize(database, user, password, {
         host,
