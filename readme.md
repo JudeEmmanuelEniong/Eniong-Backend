@@ -6,8 +6,8 @@
 ## Live Links
 | | URL |
 |---|---|
-| Frontend | https://Eniong-finalproject-576923.netlify.app |
-| Backend API Docs | https://Eniong-backend.onrender.com/api-docs |
+| Frontend | https://eniong-frontend.vercel.app/account/login?returnUrl=%2F
+| Backend API Docs | https://eniong-backend-production.up.railway.app/api-docs/
 
 ---
 
