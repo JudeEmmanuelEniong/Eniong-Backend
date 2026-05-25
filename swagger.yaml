@@ -4,8 +4,8 @@ info:
   description: Node.js + MySQL - Auth API by Eniong - UC CCS Final Examination
   version: 1.0.0
 servers:
-  - url: https://eniong-backend.onrender.com
-    description: Production server
+  - url: 'https://eniong-backend-production.up.railway.app'
+    description: 'Production server'
 paths:
   /accounts/register:
     post:
